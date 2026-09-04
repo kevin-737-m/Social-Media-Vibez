@@ -8,16 +8,13 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
+
 app.use(cors({
-    origin: "https://social-media-vibez.vercel.app/",
+    origin: "https://social-media-vibez.vercel.app",
     credentials: true
 }));
 
 app.use("/api/auth", authroute);
 app.use("/api/posts", postroute);
-
-app.get("/", (req, res) => {
-    res.send("Vibez Backend is running!");
-});
 
 module.exports = app;
