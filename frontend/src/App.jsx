@@ -13,7 +13,7 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:3000/api/auth/logout');
+      await axios.post('https://social-media-vibez.onrender.com/api/auth/logout');
       localStorage.removeItem("username");
       setUsername("");
       navigate("/");
@@ -27,7 +27,7 @@ const App = () => {
       <header>
         <h1>Vibez — Share your moment</h1>
         {username && <p>Welcome, {username} 👋</p>}
-      </header> 
+      </header>
       <main>
         <Routes>
           <Route path='/' element={<Welcome />} />

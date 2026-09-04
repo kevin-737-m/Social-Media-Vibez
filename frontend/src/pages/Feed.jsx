@@ -8,7 +8,7 @@ const Feed = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/posts");
+                const response = await axios.get("https://social-media-vibez.onrender.com/api/posts");
                 const data = response.data;
                 setPosts(data.posts);
             } catch (error) {
@@ -20,7 +20,7 @@ const Feed = () => {
 
     const likePost = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:3000/api/posts/${id}/like`);
+            const response = await axios.post(`https://social-media-vibez.onrender.com/api/posts/${id}/like`);
             const data = response.data;
             setPosts((prev) => prev.map((p) => (p._id === id ? data.post : p)));
         } catch (error) {
@@ -30,7 +30,7 @@ const Feed = () => {
 
     const commentPost = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:3000/api/posts/${id}/comment`, {
+            const response = await axios.post(`https://social-media-vibez.onrender.com/api/posts/${id}/comment`, {
                 comment: comment
             });
             const data = response.data;
@@ -42,12 +42,15 @@ const Feed = () => {
     }
 
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:3000/api/posts/${id}`);
-            setPosts((prev) => prev.filter((p) => p._id !== id));
-        } catch (error) {
-            console.log(error);
-            alert("Only The Creator Can Destroy This Post!");
+        const a = window.confirm("Are You Sure You Want To Delete This Post?");
+        if (a) {
+            try {
+                await axios.delete(`https://social-media-vibez.onrender.com/api/posts/${id}`);
+                setPosts((prev) => prev.filter((p) => p._id !== id));
+            } catch (error) {
+                console.log(error);
+                alert("Only The Creator Can Destroy This Post!");
+            }
         }
     }
 

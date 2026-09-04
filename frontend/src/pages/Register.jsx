@@ -12,7 +12,7 @@ const Register = ({ setUsername }) => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/register", { username, email, password });
+            const res = await axios.post("https://social-media-vibez.onrender.com/api/auth/register", { username, email, password });
             console.log(res.data);
             if (res.data.user?.username) {
                 localStorage.setItem("username", res.data.user.username);
