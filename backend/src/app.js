@@ -16,4 +16,8 @@ app.use(cors({
 app.use("/api/auth", authroute);
 app.use("/api/posts", postroute);
 
+app.get("/", (req, res) => {
+    res.send("Vibez Backend is running!");
+});
+
 module.exports = app;
