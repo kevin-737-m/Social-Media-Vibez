@@ -13,7 +13,7 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('https://social-media-vibez.onrender.com/api/auth/logout');
+      await axios.post('https://social-media-vibez.onrender.com/api/auth/logout', {}, { withCredentials: true });
       localStorage.removeItem("username");
       setUsername("");
       navigate("/");

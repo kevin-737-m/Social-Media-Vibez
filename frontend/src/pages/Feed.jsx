@@ -8,7 +8,7 @@ const Feed = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get("https://social-media-vibez.onrender.com/api/posts");
+                const response = await axios.get("https://social-media-vibez.onrender.com/api/posts", { withCredentials: true });
                 const data = response.data;
                 setPosts(data.posts);
             } catch (error) {
@@ -20,7 +20,7 @@ const Feed = () => {
 
     const likePost = async (id) => {
         try {
-            const response = await axios.post(`https://social-media-vibez.onrender.com/api/posts/${id}/like`);
+            const response = await axios.post(`https://social-media-vibez.onrender.com/api/posts/${id}/like`, {}, { withCredentials: true });
             const data = response.data;
             setPosts((prev) => prev.map((p) => (p._id === id ? data.post : p)));
         } catch (error) {
@@ -32,7 +32,7 @@ const Feed = () => {
         try {
             const response = await axios.post(`https://social-media-vibez.onrender.com/api/posts/${id}/comment`, {
                 comment: comment
-            });
+            }, { withCredentials: true });
             const data = response.data;
             setPosts((prev) => prev.map((p) => (p._id === id ? data.post : p)));
             setComment("");
@@ -45,7 +45,7 @@ const Feed = () => {
         const a = window.confirm("Are You Sure You Want To Delete This Post?");
         if (a) {
             try {
-                await axios.delete(`https://social-media-vibez.onrender.com/api/posts/${id}`);
+                await axios.delete(`https://social-media-vibez.onrender.com/api/posts/${id}`, { withCredentials: true });
                 setPosts((prev) => prev.filter((p) => p._id !== id));
             } catch (error) {
                 console.log(error);

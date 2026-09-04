@@ -16,7 +16,7 @@ const Create = () => {
             formData.append("description", description);
             formData.append("image", image);
 
-            const response = await axios.post("https://social-media-vibez.onrender.com/api/posts", formData);
+            const response = await axios.post("https://social-media-vibez.onrender.com/api/posts", formData, { withCredentials: true });
             const data = response.data;
             console.log(data);
             alert("Post Created Successfully!");
